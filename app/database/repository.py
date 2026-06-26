@@ -18,7 +18,7 @@ async def note_search(note:str):
     data =  await read_all_notes()
     found = []
     for item in data:
-        if cleaned in item['title'] or cleaned in item['description']:
+        if (cleaned in item['title']) or (item['description'] != None and cleaned in item['description']):
             found.append(item)
     return found
 

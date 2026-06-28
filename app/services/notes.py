@@ -21,3 +21,10 @@ async def note_search(note:str):
 
 async def add_note(new_note:Note):
     return await repository.add_note(new_note)
+
+async def remove_note(note_id:int):
+    r = await repository.remove_note(note_id)
+    if r == 'Not Found':
+        raise HTTPException(status_code=404)
+    else:
+        return r

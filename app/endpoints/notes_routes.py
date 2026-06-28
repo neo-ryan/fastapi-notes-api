@@ -19,10 +19,10 @@ async def read_note_by_id(note_id:int) -> NoteResponse:
 async def add_note(new_note:Note) -> NoteResponse:
     return await notes.add_note(new_note)
 
+@router.delete('/{note_id}')
+async def delete_note(note_id:int) -> list[NoteResponse]:
+    return await notes.remove_note(note_id)
+
 @router.put('/{note_id}')
 async def update_note() -> NoteResponse:
-    pass
-
-@router.delete('/{note_id}')
-async def delete_note() -> list[NoteResponse]:
     pass

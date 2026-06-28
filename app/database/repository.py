@@ -32,3 +32,18 @@ async def add_note(new_note:Note):
         dump(data, f, indent=2)
         f.close()
     return new_dict
+
+async def remove_note(note_id:int):
+    data = await read_all_notes()
+    
+    if any(item['id'] == note_id for item in data):      
+        changed_data = [item for item in data if item['id'] != note_id]
+        
+        with open(BASE_DIR, 'w') as f:
+            dump(changed_data, f, indent=2)
+            
+        return changed_data
+    
+    else:
+        return 'Not Found'
+    
